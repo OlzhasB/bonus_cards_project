@@ -69,6 +69,18 @@ class CardSearchList(SearchListView):
     form_class = CardSearchForm
     filter_class = CardFilter
 
+def activateCard(request, pk):
+    #print(request.GET.get('pk'))
+    print(pk)
+    Card.objects.filter(pk=pk).update(active=1)
+    response = redirect('/cards/')
+    return response
+
+def deactivateCard(request, pk):
+    print(pk)
+    Card.objects.filter(pk=pk).update(active=0)
+    response = redirect('/cards/')
+    return response
 
 
 def generate(request):

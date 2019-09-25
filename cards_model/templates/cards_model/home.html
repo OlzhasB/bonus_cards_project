@@ -46,11 +46,14 @@
                 </td>
                 <td>
                   {% if object.dateOfExpiration > object.datetime %}
-                    <a href='{% url "card:update" pk=object.pk %}'>
-                    <button type="button" class="btn btn-primary btn-sm">
+
                   {% if object.active %}
-                    Deactivate
+                      <a href='{% url "card:deactivateCard" pk=object.pk %}'>
+                      <button type="button" class="btn btn-primary btn-warning">
+                        Deactivate
                   {% else %}
+                       <a href='{% url "card:activateCard" pk=object.pk %}'>
+                      <button type="button" class="btn btn-primary btn-success">
                     Activate
                   {% endif %}
                     </button>
