@@ -37,15 +37,6 @@ class CardCreateView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     success_message = 'Card created succesfully!'
 
 
-class CardUpdateView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
-    model = Card
-    template_name = 'cards_model/update.html'
-    fields = ['active']
-    success_url = reverse_lazy('card:home')
-    login_url = '/login'
-    success_message = ('Card updated successfully!')
-
-
 class CardDeleteView(LoginRequiredMixin, DeleteView):
     model = Card
     success_url = reverse_lazy('card:home')
