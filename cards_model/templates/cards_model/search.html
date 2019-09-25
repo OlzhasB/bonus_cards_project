@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block content%}
+
+<div class="container">
+
+    <h2>Search cards</h2>
+
+    <form class="form-inline" action="" method="GET">
+        {{ form.as_p }}
+        <button class="btn btn-primary btn-sm" type="submit">Search</button>
+        </fieldset>
+    </form>
+    {% if objects_list %}
+    <div class="col md-4 mx-auto">
+        <table class="table table-striped">
+            <tr>
+                <th>Card number</th>
+                <th>Series</th>
+                <th>Date of Issue</th>
+                <th>Date of Expiration</th>
+                <th>Status</th>
+                <th>&nbsp;</th>
+                <th>&nbsp;</th>
+            </tr>
+            {% for object in objects_list %}
+            <tr>
+                <td>{{object.number}}</td>
+                <td>{{object.series}}</td>
+                <td>
+                    {{object.dateOfIssue}}
+                </td>
+                <td>
+                    {{object.dateOfExpiration}}
+                </td>
+               <td>
+                  {% if object.dateOfExpiration < object.datetime %}
+                    Expired
+                  {% elif object.active and object.dateOfExpiration > object.datetime %}
+                    Active
+                  {% else %}
+                    Not active
+                  {% endif %}
+                </td>
+                <td>
+                  {% if object.dateOfExpiration > object.datetime %}
+                    <a href='{% url "card:update" pk=object.pk %}'>
+                    <button type="button" class="btn btn-primary btn-sm">
+                  {% if object.active %}
+                    Deactivate
+                  {% else %}
+                    Activate
+                  {% endif %}
+                    </button>
+                    </a>
+                  {% endif %}
+                </td>
+
+                <td>
+                    <a href='{% url "card:delete" pk=object.pk %}'>
+                        <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    {% endif %}
+
+</div>
+{% endblock %}

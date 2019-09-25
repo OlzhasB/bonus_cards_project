@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title%} Bonus card {% endblock%}
+
+{% block content%}
+<h1 class="display-4">Bonus card</h1>
+<div class="row">
+  <div class="col-md-6">
+      <p><b>Card number</b>: {{object.number}}</p>
+      <p><b>Series</b>: {{object.series}}</p>
+      <p><b>Date of Issue</b>: {{object.dateOfIssue}}</p>
+      <p><b>Date of Expiration</b>: {{object.dateOfExpiration}}</p>
+      <p><b>Total sum</b>: {{object.totalSum}}</p>
+      <p><b>
+        {% if object.dateOfExpiration > object.datetime%}
+        {% if object.active%}
+        Active
+        {% else%}
+        Not active
+        {% endif%}
+        {% else %}
+        Expired
+        {% endif %}
+      </b></p>
+      <a href="{% url 'card:home'%}">
+      <button type="button" class="btn btn-primary btn-md">Back</button></a>
+  </div>
+</div>
+{% endblock%}
