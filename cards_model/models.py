@@ -31,6 +31,6 @@ class Card(models.Model):
         if self.dateOfIssue > timezone.now() and self.active:
             raise ValidationError('Date of issue cant be later than now!')
 
-
+# Возьмите меня на работу, я быстро учусь :)
 
         return super(Card, self).clean(*args, **kwargs)
