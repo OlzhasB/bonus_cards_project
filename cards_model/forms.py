@@ -13,6 +13,9 @@ ACTIVE_LIST = [('', ''),
                ]
 
 
+class DateInput(forms.DateInput):
+    input_type = 'date'
+
 class CardForm(forms.ModelForm):
     number = forms.CharField(label='Card number',
                              widget=forms.TextInput(
@@ -25,10 +28,10 @@ class CardForm(forms.ModelForm):
     active = forms.CharField(label='Status',
                              widget=forms.Select(choices=ACTIVE_LIST))
 
-    dateOfExpiration = forms.DateTimeField(label='Date of Expiration',
-                                           widget=forms.TextInput(
-                                               attrs={'class': 'form-control',
-                                                      'placeholder': 'YYYY-MM-DD HH:MM:SS'}))
+
+
+    dateOfExpiration = forms.DateTimeField(label='Date of Expiration', widget=DateInput)
+
 
     totalSum = forms.DecimalField(label='Total Sum',
                                   widget=forms.TextInput(
@@ -37,6 +40,7 @@ class CardForm(forms.ModelForm):
 
     class Meta(object):
         model = Card
+        widgets = {'dateOfExpiration' : DateInput()}
         fields = ('number', 'series', 'dateOfIssue', 'dateOfExpiration', 'totalSum', 'active')
 
 
