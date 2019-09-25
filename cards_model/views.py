@@ -89,7 +89,7 @@ def generateCards(request):
 
 
     for i in range(int(amount)):
-        card = Card.objects.create(dateOfExpiration=datetime.now() + relativedelta(months=int(period)), totalSum=0, active=1,
+        Card.objects.create(dateOfExpiration=datetime.now() + relativedelta(months=int(period)), totalSum=0, active=1,
                                    number=generateCardNumber(), series=series)
 
     response = redirect('/cards/')

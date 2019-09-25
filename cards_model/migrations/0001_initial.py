@@ -20,7 +20,7 @@ class Migration(migrations.Migration):
                 ('number', models.CharField(max_length=30)),
                 ('dateOfIssue', models.DateTimeField(default=datetime.datetime.now, verbose_name='Date of Issue')),
                 ('dateOfExpiration', models.DateTimeField(verbose_name='Date of Expiration')),
-                ('totalSum', models.DecimalField(decimal_places=7, max_digits=7, verbose_name='Total sum')),
+                ('totalSum', models.DecimalField(decimal_places=2, max_digits=18, verbose_name='Total sum')),
                 ('active', models.BooleanField()),
             ],
             options={
